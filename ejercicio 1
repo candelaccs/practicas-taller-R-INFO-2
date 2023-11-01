@@ -1,0 +1,66 @@
+
+
+
+
+b. Modifique el ejercicio anterior, considerando que ahora habrá un robot fiscalizador,
+que será responsable de informar la diferencia de flores que obtuvo el ganador con
+respecto al perdedor. El robot fiscalizador se ubica en la esquina (2,1)
+
+programa ejercicio1bpractica2
+procesos
+  proceso juntarFlores (ES flores: numero)
+  comenzar
+    mientras HayFlorEnLaEsquina
+      tomarFlor
+      flores:= flores+1
+  fin
+areas
+  area1: AreaP (1,1,1,10)
+  area2: AreaP (2,11,2,20)
+  area3: AreaP (2,1,2,1)
+robots
+  robot juntador
+  variables
+    id, flores: numero
+  comenzar
+    RecibirMensaje (id, robot3)
+    flores:=0
+    repetir 9
+      juntarFlores (flores)
+      mover
+    EnviarMensaje (id, robot3)
+    EnviarMensaje (flores, robot3)
+  fin
+  robot fiscal
+  variables
+    maxf, maxff maxr, f, id: numero
+  comenzar
+    maxf:= 0
+    maxff:= maxf
+    EnviarMensaje (1,robot1)
+    EnviarMensaje (2, robot2)
+    repetir 2
+      RecibirMensaje (id, *)
+      si id = 1
+        RecibirMensaje (f, robot1)
+      sino 
+        RecibirMensaje (f, robot2)
+      si (f > maxf)
+        maxff:= maxf
+        maxf:= f
+        maxr:= id
+    Informar (id)
+    Informar (maxf - maxff)
+  fin
+variables
+  robot1: juntador
+  robot2: juntador
+  robot3: fiscal
+comenzar
+  AsignarArea (robot1, area1)
+  AsignarArea (robot2, area2)
+  AsignarArea (robot3, area3)
+  Iniciar (robot1, 1,1)
+  Iniciar (robot2, 2,11)
+  Iniciar (robot3, 2,1)
+fin
