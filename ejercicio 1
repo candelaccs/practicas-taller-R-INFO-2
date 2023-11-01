@@ -173,8 +173,8 @@ robots
     repetir 6  
       RecibirMensaje (id, *)  
       si id = 1  
-        RecibirMensaje (f, robot1)  
-      si id = 2 
+        RecibirMensaje (f, robot1)   
+      si id = 2 // va todo adentro del primer si
         RecibirMensaje (f, robot2)  
       si id = 3
         RecibirMensaje (f, robot3) 
