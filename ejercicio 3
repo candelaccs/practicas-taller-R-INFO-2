@@ -1,0 +1,83 @@
+programa ejercicio3practica2 
+procesos 
+  proceso juntarFlores (ES flores: numero) 
+  comenzar 
+    mientras HayFlorEnLaEsquina 
+      tomarFlor 
+      flores:= flores+1 
+  fin 
+  proceso juntarPapeles (ES papeles: numero) 
+  comenzar 
+    mientras HayPapelEnLaEsquina 
+      tomarPapel 
+      papeles:= papeles+1 
+  fin 
+  proceso recorrerPapeles (ES papeles: numero) 
+  comenzar 
+    derecha 
+    repetir 9 
+      juntarPapeles (papeles) 
+      mover 
+    juntarPapeles (papeles) 
+  fin 
+  proceso recorrerFlores (ES flores: numero) 
+  comenzar 
+    derecha 
+    repetir 9 
+      juntarFlores (flores) 
+      mover 
+    juntarFlores (flores) 
+  fin 
+areas 
+  area1: AreaP (1,1,10,1) 
+  area2: AreaP (11,1,20,1) 
+  area3: AreaP (1,5,10,5) 
+  area4: AreaP (11,5,20,5) 
+robots 
+  robot a1 
+  variables 
+    flores:numero 
+  comenzar 
+    flores:= 0 
+    recorrerFlores (flores) 
+    EnviarMensaje (flores, robota2) 
+  fin 
+  robot a2 
+  variables 
+    flores: numero 
+  comenzar 
+    RecibirMensaje (flores, robota1) 
+    recorrerFlores (flores) 
+    Informar (flores) 
+  fin 
+  robot b1 
+  variables 
+    papeles:numero 
+  comenzar 
+    papeles:= 0 
+    recorrerPapeles (papeles) 
+    EnviarMensaje (papeles, robotb2) 
+  fin 
+  robot b2 
+  variables 
+    papeles: numero
+  comenzar 
+    RecibirMensaje (papeles, robotb1) 
+    recorrerPapeles (papeles) 
+    Informar (papeles) 
+  fin
+variables 
+  robota1: a1 
+  robota2: a2 
+  robotb1: b1 
+  robotb2: b2 
+comenzar 
+  AsignarArea (robota1, area1) 
+  AsignarArea (robota2, area2) 
+  AsignarArea (robotb1, area3) 
+  AsignarArea (robotb2, area4) 
+  Iniciar (robota1, 1,1) 
+  Iniciar (robota2, 11,1) 
+  Iniciar (robotb1, 1,5) 
+  Iniciar (robotb2, 11,5) 
+fin 
